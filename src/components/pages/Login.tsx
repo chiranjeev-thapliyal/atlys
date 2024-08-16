@@ -1,9 +1,9 @@
-import Button from "../../components/atoms/Button"
-import Input from "../../components/atoms/Input"
-import Label from "../../components/atoms/Label"
-import Text from "../../components/atoms/Text"
-import Card from "../../components/molecules/Card"
-import Link from "../../components/atoms/Link"
+import Button from "../atoms/Button"
+import Input from "../atoms/Input"
+import Label from "../atoms/Label"
+import Text from "../atoms/Text"
+import Card from "../molecules/Card"
+import Link from "../atoms/Link"
 
 function Login(){
   return <div className="h-full w-full flex justify-center items-center bg-black">
