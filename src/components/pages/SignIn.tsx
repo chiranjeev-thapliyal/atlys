@@ -6,7 +6,8 @@ import Card from "../../components/molecules/Card"
 import Link from "../../components/atoms/Link"
 
 function Login(){
-  return <Card>
+  return <div className="h-full w-full flex justify-center items-center bg-black">
+      <Card>
         <Text as="h2" className="text-center font-medium text-sm text-gray-light">Welcome Back</Text>
         <Text as="h1" className="text-center text-lg text-white font-semibold">Log into your account</Text>
 
@@ -26,6 +27,8 @@ function Login(){
         </form>
         <p className="pt-3 text-gray-heavy text-sm font-medium">Not registered yet? <Link href="#" target="_self">Register &rarr;</Link></p>
       </Card>
+  </div>
+
 }
 
 export default Login;

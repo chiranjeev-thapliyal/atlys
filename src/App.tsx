@@ -1,8 +1,14 @@
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import Login from "./components/pages/SignIn"
 
 function App() {
   return (
-    <div className='app h-full w-full flex justify-center items-center bg-black'>
+    <div className='app h-full'>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Router>
       <Login />
     </div>
   )
