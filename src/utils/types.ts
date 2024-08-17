@@ -1,1 +1,7 @@
-export type ClassType = string | number | boolean | undefined | null | ClassType[];
+export type ClassType =
+  | string
+  | number
+  | boolean
+  | undefined
+  | null
+  | ClassType[];

@@ -1,4 +1,4 @@
 export interface LabelProps {
-  children: string,
-  className?: string
+  children: string;
+  className?: string;
 }

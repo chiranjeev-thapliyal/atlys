@@ -1,11 +1,11 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
-import Login from "./components/pages/Login"
-import Register from "./components/pages/Register"
-import Home from "./components/pages/Home"
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Login from "./components/pages/Login";
+import Register from "./components/pages/Register";
+import Home from "./components/pages/Home";
 
 function App() {
   return (
-    <div className='app h-full'>
+    <div className="app h-full">
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -14,7 +14,7 @@ function App() {
         </Routes>
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
