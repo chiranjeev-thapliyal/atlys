@@ -9,15 +9,15 @@ function NewPost() {
       </Text>
       <Card className="bg-black-heavy font-medium p-4 flex gap-4">
         <div className="bg-black-light rounded-full w-12 h-12 p-4 flex justify-center items-center">
-          <span className="text-lg">💬</span>
+          <Text as="span" className="text-lg">💬</Text>
         </div>
         <Input
           type="text"
           placeholder="How are you feeling today?"
-          className="w-full border-none"
+          className="w-full p-0 border-none text-white"
         />
       </Card>
-      <Button className="w-fit px-9 py-3 self-end">Post</Button>
+      <Button className="w-fit px-10 py-3 self-end text-base">Post</Button>
     </Card>
   );
 }

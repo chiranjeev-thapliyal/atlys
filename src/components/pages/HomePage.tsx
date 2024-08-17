@@ -20,7 +20,7 @@ function HomePage() {
           </Text>
         </div>
         <section className="flex flex-col gap-4">
-          <div className="w-full pt-16">
+          <div className="w-full pt-10">
             <NewPost />
           </div>
           {posts?.map((post) => (

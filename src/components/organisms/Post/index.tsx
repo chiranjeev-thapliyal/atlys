@@ -16,7 +16,7 @@ function Post({
 
   return (
     <Card className="bg-black-light py-6 px-5 gap-3 flex flex-col">
-      <div className="flex gap-4">
+      <div className="flex gap-4 items-center">
         <img src={imageUrl} className="w-11 h-11 rounded-full object-cover" />
         <div className="flex flex-col gap-1">
           <Text as="span" className="text-gray-normal">
@@ -26,10 +26,14 @@ function Post({
             {status.join(" • ")}
           </Text>
         </div>
+        <span className="justify-self-end ml-auto">
+          <img src="/icons/dots-horizontal.svg" />
+        </span>
       </div>
       <Card className="bg-black-heavy p-4 flex gap-4">
-        <span className="w-12 h-12 bg-black-light p-4 rounded-full flex justify-center items-center">
-          {emoji}
+
+        <span className="flex justify-center items-center rounded-full bg-black-light p-4">
+          <Text as="span" className="text-lg">{emoji}</Text>
         </span>
         <Text as="p" className="text-gray-light">
           {content}
