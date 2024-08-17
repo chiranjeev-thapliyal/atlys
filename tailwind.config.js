@@ -18,6 +18,10 @@ export default {
           normal: "#35373B",
           heavy: "#191920",
         },
+        gradient: {
+          start: "#969696",
+          stop: "#343434",
+        },
       },
       maxWidth: {
         116: "464px",

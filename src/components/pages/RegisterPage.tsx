@@ -3,9 +3,9 @@ import { Button, Input, Label, Text } from "../atoms";
 import { Card } from "../molecules";
 import { Form } from "../organisms";
 
-function Register() {
+function RegisterPage() {
   return (
-    <div className="h-full w-full flex justify-center items-center bg-black">
+    <div className="h-full w-full flex justify-center items-center bg-black p-4">
       <Card className="min-w-max max-w-116 p-6 bg-black-light font-medium">
         <Text
           as="h2"
@@ -45,4 +45,4 @@ function Register() {
   );
 }
 
-export default Register;
+export default RegisterPage;

@@ -2,7 +2,7 @@ import { Text } from "../atoms";
 import Data from "../../store/data.json";
 import { NewPost, Post } from "../organisms";
 
-function Home() {
+function HomePage() {
   const { posts } = Data;
   return (
     <div className="w-full h-full bg-black flex flex-col items-center p-16">
@@ -32,4 +32,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;
