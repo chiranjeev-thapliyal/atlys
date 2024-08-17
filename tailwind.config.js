@@ -18,11 +18,14 @@ export default {
         black: {
           DEFAULT: "#000000",
           light: "#27292D",
-          normal: "#35373B"
+          normal: "#35373B",
+          heavy: "#191920"
         },
       },
       maxWidth: {
-        '116': '464px'
+        '116': '464px',
+        '145': '580px',
+        '175': '700px'
       }
     },
 
