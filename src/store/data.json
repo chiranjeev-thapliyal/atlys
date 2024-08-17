@@ -1,0 +1,24 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "username": "Theresa Webb",
+      "imageUrl": "/users/theresa-webb.png",
+      "time": "5mins ago",
+      "isEdited": false,
+      "emoji": "👋",
+      "content": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+      "commentCount": 24
+    },
+    {
+      "id": 2,
+      "username": "Marvin McKinney",
+      "imageUrl": "/users/marvin-mckinney.png",
+      "time": "8mins ago",
+      "isEdited": true,
+      "emoji": "😞",
+      "content": "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
+      "commentCount": 24
+    }
+  ]
+}
