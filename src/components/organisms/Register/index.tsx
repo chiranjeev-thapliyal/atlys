@@ -3,7 +3,7 @@ import { Card } from "../../molecules";
 import { Form } from "../../organisms";
 import { RegisterProps } from "./index.types";
 
-function Register({onClose, onLoginClick}: RegisterProps) {
+function Register({onClose, onLoginClick, onSubmit}: RegisterProps) {
   return (
     <Card className="relative min-w-max max-w-116 p-[1px] bg-gradient-to-br from-gradient-start to-gradient-stop animate">
     <Card className="min-w-max max-w-116 p-6 bg-black-light font-medium flex flex-col">
@@ -19,7 +19,7 @@ function Register({onClose, onLoginClick}: RegisterProps) {
         Create an account to continue
       </Text>
 
-      <Form className="pt-11">
+      <Form onSubmit={onSubmit} className="pt-11">
         <div className="flex flex-col gap-2">
           <Label>Email</Label>
           <Input type="text" placeholder="Enter your email" />
@@ -33,7 +33,7 @@ function Register({onClose, onLoginClick}: RegisterProps) {
           <Input type="text" placeholder="Choose a strong password" />
         </div>
         <div className="pt-5">
-          <Button className="w-full bg-blue-normal">Continue</Button>
+          <Button onClick={onSubmit} className="w-full bg-blue-normal">Continue</Button>
         </div>
       </Form>
       <p className="pt-3 text-gray-heavy text-sm font-medium">

@@ -4,7 +4,7 @@ import { Card } from "../../molecules";
 import { Form } from "../../organisms";
 import { LoginProps } from "./index.types";
 
-function Login({ onClose, onSignupClick }: LoginProps) {
+function Login({ onClose, onSignupClick, onSubmit }: LoginProps) {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
@@ -31,7 +31,7 @@ function Login({ onClose, onSignupClick }: LoginProps) {
           </Text>
         </div>
 
-        <Form className="pt-11">
+        <Form onSubmit={onSubmit} className="pt-11">
           <div className="flex flex-col gap-2">
             <Label>Email or Username</Label>
             <Input
@@ -62,7 +62,7 @@ function Login({ onClose, onSignupClick }: LoginProps) {
               </span>
             </div>
           </div>
-          <Button className="w-full bg-blue-normal">Login now</Button>
+          <Button onClick={onSubmit} className="w-full bg-blue-normal">Login now</Button>
         </Form>
         <p className="pt-3 text-gray-heavy text-sm font-medium">
           Not registered yet?{" "}
