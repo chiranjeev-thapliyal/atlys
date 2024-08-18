@@ -30,7 +30,6 @@ function HomePage() {
   }
 
   useEffect(() => {
-    console.log(isAuthenticated)
     if(!isAuthenticated){
       openLoginModal();
     }

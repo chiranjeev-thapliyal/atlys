@@ -1,3 +1,5 @@
+import { ChangeEventHandler } from "react";
+
 export interface LoginProps {
   username: string;
   password: string;
@@ -5,5 +7,5 @@ export interface LoginProps {
   onClose?: () => void;
   onSignupClick?: () => void;
   onSubmit?: () => void;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ChangeEventHandler<HTMLInputElement>
 }
