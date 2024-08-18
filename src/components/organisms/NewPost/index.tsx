@@ -20,7 +20,7 @@ function NewPost({content, onChange, disabled, onClick}: NewPostProps) {
           onChange={onChange}
         />
       </Card>
-      <Button disabled={disabled} onClick={onClick} className={`${disabled ? "bg-gray-heavy" : "bg-blue-normal"} w-fit px-10 py-2 self-end text-base`}>Post</Button>
+      <Button disabled={disabled} onClick={onClick} className={`${disabled ? "bg-gray-heavy" : "bg-blue-normal cursor-pointer hover:opacity-85"} w-fit px-10 py-2 self-end text-base`}>Post</Button>
     </Card>
   );
 }

@@ -91,7 +91,7 @@ function Register({
               onClick={onSubmit}
               className={`w-full  ${
                 submitAllowed
-                  ? "bg-blue-normal cursor-pointer hover:opacity-85"
+                  ? "bg-blue-normal cursor-pointer hover:opacity-85 hover:shadow-2xl"
                   : "bg-gray-light cursor-not-allowed"
               }`}
             >

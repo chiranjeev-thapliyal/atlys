@@ -26,7 +26,7 @@ function HomePage() {
   const { posts } = Data;
 
   const isValidLoginFormData = (type: "login" | "register") =>
-    (type === "login" ? loginFormErrors?.length : registerFormErrors) === 0;
+    (type === "login" ? loginFormErrors?.length : registerFormErrors?.length) === 0;
 
   const openLoginModal = () => {
     if (!isAuthenticated) setShowLoginModal(true);
