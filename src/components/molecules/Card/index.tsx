@@ -1,7 +1,7 @@
 import { classMerge } from "../../../utils/helper";
 import { CardProps } from "./index.types";
 
-function Card({ children, className, ...rest }: CardProps): JSX.Element {
+function Card({ children, className, ...rest }: CardProps) {
   const baseClass = "w-full rounded-lg";
 
   return (
