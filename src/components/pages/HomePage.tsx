@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Text } from "../atoms";
 import { Modal } from "../molecules";
 import { Login, NewPost, Post, Register } from "../organisms";
 import Data from "../../store/data.json";
+import { AuthContext } from "../../contexts/auth";
 
 function HomePage() {
+  const {isAuthenticated, login} = useContext(AuthContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
@@ -21,6 +23,13 @@ function HomePage() {
     setShowLoginModal(false);
     setShowRegisterModal(false);
   }
+
+  useEffect(() => {
+    console.log(isAuthenticated)
+    if(!isAuthenticated){
+      openLoginModal();
+    }
+  }, [isAuthenticated])
 
   return (
     <div className="w-full h-full bg-black flex flex-col items-center p-4 md:p-16 overflow-y-auto">
@@ -48,9 +57,9 @@ function HomePage() {
       </div>
       <Modal isOpen={showLoginModal || showRegisterModal} closeModal={closeModal}>
         {showLoginModal ? (
-          <Login onClose={closeModal} onSignupClick={toggleAuth} />
+          <Login onSubmit={login} onClose={closeModal} onSignupClick={toggleAuth} />
         ) : showRegisterModal ? (
-          <Register onClose={closeModal} onLoginClick={toggleAuth} />
+          <Register onSubmit={login} onClose={closeModal} onLoginClick={toggleAuth} />
         ) : null}
       </Modal>
     </div>

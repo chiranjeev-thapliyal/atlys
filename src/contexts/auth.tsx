@@ -1,4 +1,4 @@
-import { createContext, EventHandler, FormEventHandler, ReactEventHandler, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { AuthContextProps, initialAuthContext } from "./auth.types";
 
 export const AuthContext = createContext<AuthContextProps>(initialAuthContext);
@@ -10,13 +10,6 @@ function AuthProvider({children}: {children: ReactNode}){
     event?.preventDefault();
     setIsAuthenticated(true);
   }
-
-  useEffect(() => {
-    console.log("auth context mounted")
-    return () => {
-      console.log("auth context unmounted")
-    }
-  }, [])
 
   return <AuthContext.Provider value={{isAuthenticated, login}}>
     {children}
