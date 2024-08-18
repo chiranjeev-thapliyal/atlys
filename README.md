@@ -90,7 +90,7 @@ src/
 
 ## Live Demo
 
-Experience the live application: [Atlys on Vercel](https://atlys-eta.vercel.app/login)
+Experience the live application: [Atlys on Vercel](https://atlys-eta.vercel.app/)
 
 ## Repository
 
