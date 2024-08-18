@@ -1,7 +1,8 @@
 import { Button, Input, Text } from "../../atoms";
 import { Card } from "../../molecules";
+import { NewPostProps } from "./index.types";
 
-function NewPost() {
+function NewPost({onClick}: NewPostProps) {
   return (
     <Card className="p-6 bg-black-light font-medium flex flex-col gap-4">
       <Text as="h1" className="text-gray-normal font-medium text-lg">
@@ -17,7 +18,7 @@ function NewPost() {
           className="w-full p-0 border-none text-white"
         />
       </Card>
-      <Button className="w-fit px-10 py-3 self-end text-base">Post</Button>
+      <Button onClick={onClick} className="bg-blue-normal w-fit px-10 py-3 self-end text-base">Post</Button>
     </Card>
   );
 }
