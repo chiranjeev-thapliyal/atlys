@@ -31,8 +31,7 @@ function Post({
         </span>
       </div>
       <Card className="bg-black-heavy p-4 flex gap-4">
-
-        <span className="flex justify-center items-center rounded-full bg-black-light p-4">
+        <span className="flex justify-center w-12 h-12 items-center rounded-full bg-black-light p-4">
           <Text as="span" className="text-lg">{emoji}</Text>
         </span>
         <Text as="p" className="text-gray-light">
@@ -41,8 +40,8 @@ function Post({
       </Card>
       {commentCount > 0 && (
         <div className="flex gap-2 justify-center items-center w-fit">
-          <img src="/icons/comments.svg" className="w-5 h-4" />
-          <Text as="span" className="text-gray-heavy">
+          <img src="/icons/comments.svg" className="w-5 h-5" />
+          <Text as="span" className="text-gray-heavy text-sm">
             {`${commentCount} comments`}{" "}
           </Text>
         </div>
