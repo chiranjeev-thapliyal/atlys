@@ -2,7 +2,7 @@ import { Button, Input, Text } from "../../atoms";
 import { Card } from "../../molecules";
 import { NewPostProps } from "./index.types";
 
-function NewPost({onClick}: NewPostProps) {
+function NewPost({content, onChange, disabled, onClick}: NewPostProps) {
   return (
     <Card className="p-6 bg-black-light font-medium flex flex-col gap-4">
       <Text as="h1" className="text-gray-normal font-medium text-lg">
@@ -16,9 +16,11 @@ function NewPost({onClick}: NewPostProps) {
           type="text"
           placeholder="How are you feeling today?"
           className="w-full p-0 border-none text-white"
+          value={content}
+          onChange={onChange}
         />
       </Card>
-      <Button onClick={onClick} className="bg-blue-normal w-fit px-10 py-3 self-end text-base">Post</Button>
+      <Button disabled={disabled} onClick={onClick} className={`${disabled ? "bg-gray-heavy" : "bg-blue-normal"} w-fit px-10 py-2 self-end text-base`}>Post</Button>
     </Card>
   );
 }
