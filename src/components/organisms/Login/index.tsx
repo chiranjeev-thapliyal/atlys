@@ -4,15 +4,30 @@ import { Card } from "../../molecules";
 import { Form } from "../../organisms";
 import { LoginProps } from "./index.types";
 
-function Login({ onClose, onSignupClick, onSubmit }: LoginProps) {
+function Login({
+  username,
+  password,
+  submitAllowed,
+  onChange,
+  onClose,
+  onSignupClick,
+  onSubmit,
+}: LoginProps) {
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
     <Card className="relative min-w-max max-w-116 p-[1px] bg-gradient-to-br from-gradient-start to-gradient-stop animate">
-      <Card className={`${onClose ? "py-6" : "py-10"} px-6 bg-black-light font-medium flex flex-col`}>
+      <Card
+        className={`${
+          onClose ? "py-6" : "py-10"
+        } px-6 bg-black-light font-medium flex flex-col`}
+      >
         {onClose && (
-          <Button className="bg-black-heavy rounded-full self-end" onClick={onClose}>
+          <Button
+            className="bg-black-heavy rounded-full self-end"
+            onClick={onClose}
+          >
             <img src="/icons/close.svg" />
           </Button>
         )}
@@ -35,9 +50,12 @@ function Login({ onClose, onSignupClick, onSubmit }: LoginProps) {
           <div className="flex flex-col gap-2">
             <Label>Email or Username</Label>
             <Input
+              name="username"
               className="text-white"
               placeholder="Enter your email or username"
               type="text"
+              onChange={onChange}
+              value={username}
             />
           </div>
           <div className="flex flex-col gap-2">
@@ -47,9 +65,12 @@ function Login({ onClose, onSignupClick, onSubmit }: LoginProps) {
             </div>
             <div className="relative flex items-center">
               <Input
+                name="password"
                 className="order-1 w-full text-white"
                 placeholder="Enter your password"
+                onChange={onChange}
                 type={showPassword ? "text" : "password"}
+                value={password}
               />
               <span
                 onClick={toggleShowPassword}
@@ -62,7 +83,15 @@ function Login({ onClose, onSignupClick, onSubmit }: LoginProps) {
               </span>
             </div>
           </div>
-          <Button onClick={onSubmit} className="w-full bg-blue-normal">Login now</Button>
+          <Button
+            disabled={!submitAllowed}
+            onClick={onSubmit}
+            className={`w-full  ${
+              submitAllowed ? "bg-blue-normal cursor-pointer" : "bg-gray-light cursor-not-allowed"
+            }`}
+          >
+            Login now
+          </Button>
         </Form>
         <p className="pt-3 text-gray-heavy text-sm font-medium">
           Not registered yet?{" "}
