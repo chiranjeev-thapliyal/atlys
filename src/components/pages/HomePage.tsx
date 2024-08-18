@@ -14,6 +14,11 @@ function HomePage() {
 
   const openLoginModal = () => setShowLoginModal(true);
 
+  const handleSubmit = () => {
+    login();
+    closeModal();
+  }
+
   const toggleAuth = () => {
     setShowLoginModal((prev) => !prev);
     setShowRegisterModal((prev) => !prev);
@@ -48,7 +53,7 @@ function HomePage() {
         </div>
         <section className="flex flex-col gap-4">
           <div className="w-full pt-10">
-            <NewPost onClick={openLoginModal} />
+            <NewPost />
           </div>
           {posts?.map((post) => (
             <Post key={post.id} {...post} />
@@ -57,9 +62,9 @@ function HomePage() {
       </div>
       <Modal isOpen={showLoginModal || showRegisterModal} closeModal={closeModal}>
         {showLoginModal ? (
-          <Login onSubmit={login} onClose={closeModal} onSignupClick={toggleAuth} />
+          <Login onSubmit={handleSubmit} onClose={closeModal} onSignupClick={toggleAuth} />
         ) : showRegisterModal ? (
-          <Register onSubmit={login} onClose={closeModal} onLoginClick={toggleAuth} />
+          <Register onSubmit={handleSubmit} onClose={closeModal} onLoginClick={toggleAuth} />
         ) : null}
       </Modal>
     </div>
