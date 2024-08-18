@@ -22,7 +22,7 @@ function Register({
       <Card className="min-w-max max-w-116 p-6 bg-black-light font-medium flex flex-col">
         {onClose && (
           <Button
-            className="bg-black-heavy rounded-full self-end"
+            className="bg-black-heavy rounded-full self-end outline-none"
             onClick={onClose}
           >
             <img src="/icons/close.svg" />
