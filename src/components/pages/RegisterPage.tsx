@@ -11,7 +11,7 @@ function RegisterPage() {
   const { formData, handleChange, errors } = useForm(registerConfig);
 
   const onLoginClick = () => navigate("/login");
-  const isValidFormData = errors?.length > 0;
+  const isValidFormData = errors?.length === 0;
 
   const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event?.target;

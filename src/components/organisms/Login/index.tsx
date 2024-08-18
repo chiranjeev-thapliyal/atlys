@@ -77,8 +77,8 @@ function Login({
                 className="absolute right-0 pr-4"
               >
                 <img
-                  className="w-fit h-fit relative before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-gray-heavy before:top-[50%] before:left-0 before:rotate-45"
-                  src="/icons/eye.svg"
+                  className="w-fit h-fit max-w-5 max-h-5 relative before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-gray-heavy before:top-[50%] before:left-0 before:rotate-45"
+                  src={showPassword ? "/icons/eye.svg" : "/icons/eye-filled.svg"}
                 />
               </span>
             </div>
@@ -87,7 +87,7 @@ function Login({
             disabled={!submitAllowed}
             onClick={onSubmit}
             className={`w-full  ${
-              submitAllowed ? "bg-blue-normal cursor-pointer" : "bg-gray-light cursor-not-allowed"
+              submitAllowed ? "bg-blue-normal cursor-pointer hover:opacity-85" : "bg-gray-light cursor-not-allowed"
             }`}
           >
             Login now
@@ -95,7 +95,7 @@ function Login({
         </Form>
         <p className="pt-3 text-gray-heavy text-sm font-medium">
           Not registered yet?{" "}
-          <span className="text-white cursor-pointer" onClick={onSignupClick}>
+          <span className="text-white cursor-pointer hover:underline" onClick={onSignupClick}>
             Register →
           </span>
         </p>
