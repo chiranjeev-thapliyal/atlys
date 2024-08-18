@@ -4,36 +4,51 @@ import { Modal } from "../molecules";
 import { Login, NewPost, Post, Register } from "../organisms";
 import Data from "../../store/data.json";
 import { AuthContext } from "../../contexts/auth";
+import useForm from "../../hooks/useForm";
+import { loginConfig, registerConfig } from "../../configs/auth";
 
 function HomePage() {
-  const {isAuthenticated, login} = useContext(AuthContext);
+  const { isAuthenticated, login } = useContext(AuthContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const { formData: loginForm, handleChange: handleLoginFormChange, errors: loginFormErrors } = useForm(loginConfig);
+  const { formData: registerForm, handleChange: handleRegisterFormChange, errors: registerFormErrors } = useForm(registerConfig);
 
   const { posts } = Data;
 
+  const isValidLoginFormData = (type: "login" | "register") => (type === 'login' ? loginFormErrors?.length : registerFormErrors) === 0;
+
   const openLoginModal = () => setShowLoginModal(true);
+
+  const handleFormChange = (type: "login" | "register") => (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = event?.target;
+    if(type === "login"){
+      handleLoginFormChange(name as keyof typeof loginConfig, value);
+    }else{
+      handleRegisterFormChange(name as keyof typeof registerConfig, value);
+    }
+  }
 
   const handleSubmit = () => {
     login();
     closeModal();
-  }
+  };
 
   const toggleAuth = () => {
     setShowLoginModal((prev) => !prev);
     setShowRegisterModal((prev) => !prev);
-  }
+  };
 
   const closeModal = () => {
     setShowLoginModal(false);
     setShowRegisterModal(false);
-  }
+  };
 
   useEffect(() => {
-    if(!isAuthenticated){
+    if (!isAuthenticated) {
       openLoginModal();
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated]);
 
   return (
     <div className="w-full h-full bg-black flex flex-col items-center p-4 md:p-16 overflow-y-auto">
@@ -59,11 +74,31 @@ function HomePage() {
           ))}
         </section>
       </div>
-      <Modal isOpen={showLoginModal || showRegisterModal} closeModal={closeModal}>
+      <Modal
+        isOpen={showLoginModal || showRegisterModal}
+        closeModal={closeModal}
+      >
         {showLoginModal ? (
-          <Login onSubmit={handleSubmit} onClose={closeModal} onSignupClick={toggleAuth} />
+          <Login
+            username={loginForm.username.value}
+            password={loginForm.password.value}
+            submitAllowed={isValidLoginFormData("login")}
+            onChange={handleFormChange("login")}
+            onSubmit={handleSubmit}
+            onClose={closeModal}
+            onSignupClick={toggleAuth}
+          />
         ) : showRegisterModal ? (
-          <Register onSubmit={handleSubmit} onClose={closeModal} onLoginClick={toggleAuth} />
+          <Register
+            username={registerForm.username.value}
+            email={registerForm.email.value}
+            password={registerForm.password.value}
+            submitAllowed={isValidLoginFormData("register")}
+            onChange={handleFormChange("register")}
+            onSubmit={handleSubmit}
+            onClose={closeModal}
+            onLoginClick={toggleAuth}
+          />
         ) : null}
       </Modal>
     </div>
