@@ -18,7 +18,9 @@ function HomePage() {
 
   const isValidLoginFormData = (type: "login" | "register") => (type === 'login' ? loginFormErrors?.length : registerFormErrors) === 0;
 
-  const openLoginModal = () => setShowLoginModal(true);
+  const openLoginModal = () => {
+    if(!isAuthenticated) setShowLoginModal(true);
+  }
 
   const handleFormChange = (type: "login" | "register") => (event: React.ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event?.target;
@@ -67,7 +69,7 @@ function HomePage() {
         </div>
         <section className="flex flex-col gap-4">
           <div className="w-full pt-10">
-            <NewPost />
+            <NewPost onClick={openLoginModal} />
           </div>
           {posts?.map((post) => (
             <Post key={post.id} {...post} />
