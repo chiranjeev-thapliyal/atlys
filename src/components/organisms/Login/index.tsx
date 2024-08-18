@@ -1,16 +1,21 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button, Input, Label, Text } from "../../atoms";
 import { Card } from "../../molecules";
 import { Form } from "../../organisms";
+import { LoginProps } from "./index.types";
 
-function Login() {
+function Login({ onClose, onSignupClick }: LoginProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const toggleShowPassword = () => setShowPassword(prev => !prev);
+  const toggleShowPassword = () => setShowPassword((prev) => !prev);
 
   return (
-    <Card className="min-w-max max-w-116 p-[1px] bg-gradient-to-br from-gradient-start to-gradient-stop animate">
-      <Card className="py-10 px-6 bg-black-light font-medium ">
+    <Card className="relative min-w-max max-w-116 p-[1px] bg-gradient-to-br from-gradient-start to-gradient-stop animate">
+      <Card className={`${onClose ? "py-6" : "py-10"} px-6 bg-black-light font-medium flex flex-col`}>
+        {onClose && (
+          <Button className="bg-black-heavy rounded-full self-end" onClick={onClose}>
+            <img src="/icons/close.svg" />
+          </Button>
+        )}
         <div className="flex flex-col gap-2">
           <Text
             as="h2"
@@ -46,24 +51,24 @@ function Login() {
                 placeholder="Enter your password"
                 type={showPassword ? "text" : "password"}
               />
-              <span onClick={toggleShowPassword} className="absolute right-0 pr-4">
+              <span
+                onClick={toggleShowPassword}
+                className="absolute right-0 pr-4"
+              >
                 <img
                   className="w-fit h-fit relative before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-gray-heavy before:top-[50%] before:left-0 before:rotate-45"
                   src="/icons/eye.svg"
                 />
               </span>
-
-
-              {/* <img src="" /> */}
             </div>
           </div>
-          <Button className="w-full">Login now</Button>
+          <Button className="w-full bg-blue-normal">Login now</Button>
         </Form>
         <p className="pt-3 text-gray-heavy text-sm font-medium">
           Not registered yet?{" "}
-          <Link className="text-white" to="/register">
+          <span className="text-white cursor-pointer" onClick={onSignupClick}>
             Register →
-          </Link>
+          </span>
         </p>
       </Card>
     </Card>
