@@ -22,15 +22,15 @@ function Register({onClose, onLoginClick, onSubmit}: RegisterProps) {
       <Form onSubmit={onSubmit} className="pt-11">
         <div className="flex flex-col gap-2">
           <Label>Email</Label>
-          <Input type="text" placeholder="Enter your email" />
+          <Input className="text-white" type="text" placeholder="Enter your email" />
         </div>
         <div className="flex flex-col gap-2">
           <Label>Username</Label>
-          <Input type="text" placeholder="Choose a preferred username" />
+          <Input className="text-white" type="text" placeholder="Choose a preferred username" />
         </div>
         <div className="flex flex-col gap-2">
           <Label>Password</Label>
-          <Input type="text" placeholder="Choose a strong password" />
+          <Input className="text-white" type="text" placeholder="Choose a strong password" />
         </div>
         <div className="pt-5">
           <Button onClick={onSubmit} className="w-full bg-blue-normal">Continue</Button>
