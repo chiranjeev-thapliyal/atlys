@@ -2,19 +2,9 @@ import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Login } from "../organisms";
 import { AuthContext } from "../../contexts/auth";
-import { validateEmail } from "../../utils/helper";
 import useForm from "../../hooks/useForm";
+import { loginConfig } from "../../configs/auth";
 
-const loginConfig = {
-  username: {
-    value: '',
-    validate: (value: string) => validateEmail(value) || value?.trim()?.length > 0
-  },
-  password: {
-    value: '',
-    validate: (value: string) => value?.trim()?.length > 0
-  }
-}
 
 function LoginPage() {
   const navigate = useNavigate();
