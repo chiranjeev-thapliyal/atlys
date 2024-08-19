@@ -4,7 +4,7 @@ export interface RegisterProps {
   username: string;
   email: string;
   password: string;
-  submitAllowed?: boolean;
+  disabled?: boolean;
   onClose?: () => void;
   onLoginClick?: () => void;
   onSubmit?: () => void;

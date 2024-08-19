@@ -3,11 +3,14 @@ import { Button, Input, Label, Text } from "../../atoms";
 import { Card } from "../../molecules";
 import { Form } from "../../organisms";
 import { LoginProps } from "./index.types";
+import PasswordInput from "../../molecules/PasswordInput";
+import CloseButton from "../../molecules/CloseButton";
+import { classMerge } from "../../../utils/helper";
 
 function Login({
   username,
   password,
-  submitAllowed,
+  disabled,
   onChange,
   onClose,
   onSignupClick,
@@ -19,18 +22,12 @@ function Login({
   return (
     <Card className="relative min-w-max max-w-116 p-[1px] bg-gradient-to-br from-gradient-start to-gradient-stop animate">
       <Card
-        className={`${
-          onClose ? "py-6" : "py-10"
-        } px-6 bg-black-light font-medium flex flex-col`}
-      >
-        {onClose && (
-          <Button
-            className="bg-black-heavy rounded-full self-end outline-none"
-            onClick={onClose}
-          >
-            <img src="/icons/close.svg" />
-          </Button>
+        className={classMerge(
+          onClose ? "py-6" : "py-10",
+          "px-6 bg-black-light font-medium flex flex-col"
         )}
+      >
+        {onClose && <CloseButton onClose={onClose} />}
         <div className="flex flex-col gap-2">
           <Text
             as="h2"
@@ -63,39 +60,33 @@ function Login({
               <Label>Password</Label>
               <Label className="text-xs">Forgot password?</Label>
             </div>
-            <div className="relative flex items-center">
-              <Input
-                name="password"
-                className="order-1 w-full text-white"
-                placeholder="Enter your password"
-                onChange={onChange}
-                type={showPassword ? "text" : "password"}
-                value={password}
-              />
-              <span
-                onClick={toggleShowPassword}
-                className="absolute right-0 pr-4"
-              >
-                <img
-                  className="w-fit h-fit max-w-5 max-h-5 relative before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-gray-heavy before:top-[50%] before:left-0 before:rotate-45"
-                  src={showPassword ? "/icons/eye.svg" : "/icons/eye-filled.svg"}
-                />
-              </span>
-            </div>
+            <PasswordInput
+              showPassword={showPassword}
+              toggleShowPassword={toggleShowPassword}
+              value={password}
+              onChange={onChange}
+            />
           </div>
           <Button
-            disabled={!submitAllowed}
+            type="submit"
+            disabled={disabled}
             onClick={onSubmit}
-            className={`w-full  ${
-              submitAllowed ? "bg-blue-normal cursor-pointer hover:opacity-85" : "bg-gray-light cursor-not-allowed"
-            }`}
+            className={classMerge(
+              "w-full",
+              disabled
+                ? "bg-gray-light cursor-not-allowed"
+                : "bg-blue-normal cursor-pointer hover:opacity-85"
+            )}
           >
             Login now
           </Button>
         </Form>
         <p className="pt-3 text-gray-heavy text-sm font-medium">
           Not registered yet?{" "}
-          <span className="text-white cursor-pointer hover:underline" onClick={onSignupClick}>
+          <span
+            className="text-white cursor-pointer hover:underline"
+            onClick={onSignupClick}
+          >
             Register →
           </span>
         </p>

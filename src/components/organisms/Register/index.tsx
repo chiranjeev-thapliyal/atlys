@@ -9,7 +9,7 @@ function Register({
   email,
   password,
   onChange,
-  submitAllowed,
+  disabled,
   onClose,
   onLoginClick,
   onSubmit,
@@ -87,12 +87,12 @@ function Register({
           </div>
           <div className="pt-5">
             <Button
-              disabled={!submitAllowed}
+              disabled={disabled}
               onClick={onSubmit}
               className={`w-full  ${
-                submitAllowed
-                  ? "bg-blue-normal cursor-pointer hover:opacity-85 hover:shadow-2xl"
-                  : "bg-gray-light cursor-not-allowed"
+                disabled
+                  ? "bg-gray-light cursor-not-allowed"
+                  : "bg-blue-normal cursor-pointer hover:opacity-85 hover:shadow-2xl"
               }`}
             >
               Continue

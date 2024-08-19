@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
+import { FormEventHandler, FormHTMLAttributes, ReactNode } from "react";
 
-export interface FormProps {
+export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   children: ReactNode;
   className?: string;
-  onSubmit?: () => void;
+  onSubmit?: FormEventHandler<HTMLFormElement>;
 }

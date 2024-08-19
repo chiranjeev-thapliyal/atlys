@@ -29,7 +29,7 @@ function RegisterPage() {
         username={formData.username.value}
         email={formData.email.value}
         password={formData.password.value}
-        submitAllowed={isValidFormData}
+        disabled={!isValidFormData}
         onChange={handleFormChange}
         onSubmit={login}
         onLoginClick={onLoginClick}

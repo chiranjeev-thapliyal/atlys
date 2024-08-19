@@ -30,7 +30,7 @@ function LoginPage() {
       <Login
         username={formData.username.value}
         password={formData.password.value}
-        submitAllowed={isValidFormData}
+        disabled={!isValidFormData}
         onChange={handleFormChange}
         onSubmit={login}
         onSignupClick={onSignupClick}

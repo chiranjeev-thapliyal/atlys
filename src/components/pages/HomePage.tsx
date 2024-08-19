@@ -108,7 +108,7 @@ function HomePage() {
           <Login
             username={loginForm.username.value}
             password={loginForm.password.value}
-            submitAllowed={isValidLoginFormData("login")}
+            disabled={!isValidLoginFormData("login")}
             onChange={handleFormChange("login")}
             onSubmit={handleSubmit}
             onClose={closeModal}
@@ -119,7 +119,7 @@ function HomePage() {
             username={registerForm.username.value}
             email={registerForm.email.value}
             password={registerForm.password.value}
-            submitAllowed={isValidLoginFormData("register")}
+            disabled={!isValidLoginFormData("register")}
             onChange={handleFormChange("register")}
             onSubmit={handleSubmit}
             onClose={closeModal}
