@@ -2,20 +2,19 @@ import { useNavigate } from "react-router-dom";
 import Register from "../organisms/Register";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/auth";
-import useForm from "../../hooks/useForm";
-import { registerConfig } from "../../configs/auth";
+import { AUTH_CONFIG } from "../../configs/auth";
+import { useAuthForm } from "../../hooks";
 
 function RegisterPage() {
   const navigate = useNavigate();
   const { isAuthenticated, login } = useContext(AuthContext);
-  const { formData, handleChange, errors } = useForm(registerConfig);
+  const { formData, handleChange, isValidFormData } = useAuthForm("register");
 
   const onLoginClick = () => navigate("/login");
-  const isValidFormData = errors?.length === 0;
 
   const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event?.target;
-    handleChange(name as keyof typeof registerConfig, value);
+    handleChange(name as keyof (typeof AUTH_CONFIG)["register"], value);
   };
 
   useEffect(() => {
