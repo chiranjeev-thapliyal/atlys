@@ -1,48 +1,24 @@
-import { useContext, useEffect, useState } from "react";
+import {
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Text } from "../atoms";
 import { Modal } from "../molecules";
 import { Login, NewPost, Post, Register } from "../organisms";
 import Data from "../../store/data.json";
 import { AuthContext } from "../../contexts/auth";
-import useForm from "../../hooks/useForm";
-import { loginConfig, registerConfig } from "../../configs/auth";
+import { AUTH_CONFIG } from "../../configs/auth";
+import { useAuthForm, useAuthModal } from "../../hooks";
 
 function HomePage() {
   const { isAuthenticated, login } = useContext(AuthContext);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const {loginModal, registerModal, isLoginMode, toggleAuthModal} = useAuthModal();
+  const loginForm = useAuthForm("login");
+  const registerForm = useAuthForm("register");
   const [newPost, setNewPost] = useState("");
-  const {
-    formData: loginForm,
-    handleChange: handleLoginFormChange,
-    errors: loginFormErrors,
-  } = useForm(loginConfig);
-  const {
-    formData: registerForm,
-    handleChange: handleRegisterFormChange,
-    errors: registerFormErrors,
-  } = useForm(registerConfig);
 
-  const { posts } = Data;
-
-  const isValidLoginFormData = (type: "login" | "register") =>
-    (type === "login" ? loginFormErrors?.length : registerFormErrors?.length) === 0;
-
-  const openLoginModal = () => {
-    if (!isAuthenticated) setShowLoginModal(true);
-  };
-
-  const handleFormChange =
-    (type: "login" | "register") =>
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = event?.target;
-      if (type === "login") {
-        handleLoginFormChange(name as keyof typeof loginConfig, value);
-      } else {
-        handleRegisterFormChange(name as keyof typeof registerConfig, value);
-      }
-    };
-
+  // Post handlers
   const handlePostChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event?.target;
     setNewPost(value);
@@ -50,24 +26,20 @@ function HomePage() {
 
   const isPostValid = newPost?.trim()?.length > 0;
 
+  // Auth handlers
   const handleSubmit = () => {
     login();
-    closeModal();
+    handleModalClose();
   };
 
-  const toggleAuth = () => {
-    setShowLoginModal((prev) => !prev);
-    setShowRegisterModal((prev) => !prev);
-  };
-
-  const closeModal = () => {
-    setShowLoginModal(false);
-    setShowRegisterModal(false);
-  };
+  const handleModalClose = () => {
+    if(isLoginMode)loginModal.closeModal();
+    else registerModal.closeModal();
+  }
 
   useEffect(() => {
     if (!isAuthenticated) {
-      openLoginModal();
+      loginModal.openModal();
     }
   }, [isAuthenticated]);
 
@@ -92,40 +64,40 @@ function HomePage() {
               content={newPost}
               onChange={handlePostChange}
               disabled={!isPostValid}
-              onClick={openLoginModal}
+              onClick={loginModal.openModal}
             />
           </div>
-          {posts?.map((post) => (
+          {Data.posts?.map((post) => (
             <Post key={post.id} {...post} />
           ))}
         </section>
       </div>
       <Modal
-        isOpen={showLoginModal || showRegisterModal}
-        closeModal={closeModal}
+        isOpen={loginModal.isOpen || registerModal.isOpen}
+        closeModal={handleModalClose}
       >
-        {showLoginModal ? (
+        {isLoginMode ? (
           <Login
-            username={loginForm.username.value}
-            password={loginForm.password.value}
-            disabled={!isValidLoginFormData("login")}
-            onChange={handleFormChange("login")}
+            username={loginForm.formData.username.value}
+            password={loginForm.formData.password.value}
+            disabled={!loginForm.isValidFormData}
+            onChange={(e) => loginForm.handleChange(e.target.name as keyof typeof AUTH_CONFIG['login'], e.target.value)}
             onSubmit={handleSubmit}
-            onClose={closeModal}
-            onSignupClick={toggleAuth}
+            onClose={loginModal.closeModal}
+            onSignupClick={toggleAuthModal}
           />
-        ) : showRegisterModal ? (
+        ) : (
           <Register
-            username={registerForm.username.value}
-            email={registerForm.email.value}
-            password={registerForm.password.value}
-            disabled={!isValidLoginFormData("register")}
-            onChange={handleFormChange("register")}
+            username={registerForm.formData.username.value}
+            email={registerForm.formData.email.value}
+            password={registerForm.formData.password.value}
+            disabled={!registerForm.isValidFormData}
+            onChange={(e) => registerForm.handleChange(e.target.name as keyof typeof AUTH_CONFIG['register'], e.target.value)}
             onSubmit={handleSubmit}
-            onClose={closeModal}
-            onLoginClick={toggleAuth}
+            onClose={registerModal.closeModal}
+            onLoginClick={toggleAuthModal}
           />
-        ) : null}
+        )}
       </Modal>
     </div>
   );

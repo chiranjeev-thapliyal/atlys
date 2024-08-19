@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Button, Input, Label, Text } from "../../atoms";
-import { Card } from "../../molecules";
+import { Card, CloseButton } from "../../molecules";
 import { Form } from "../../organisms";
+import { classMerge } from "../../../utils/helper";
 import { RegisterProps } from "./index.types";
 
 function Register({
   username,
   email,
   password,
-  onChange,
   disabled,
+  onChange,
   onClose,
   onLoginClick,
   onSubmit,
@@ -20,14 +21,7 @@ function Register({
   return (
     <Card className="relative min-w-max max-w-116 p-[1px] bg-gradient-to-br from-gradient-start to-gradient-stop animate">
       <Card className="min-w-max max-w-116 p-6 bg-black-light font-medium flex flex-col">
-        {onClose && (
-          <Button
-            className="bg-black-heavy rounded-full self-end outline-none"
-            onClick={onClose}
-          >
-            <img src="/icons/close.svg" />
-          </Button>
-        )}
+        {onClose && <CloseButton onClose={onClose} />}
         <Text
           as="h2"
           className="text-center font-medium text-sm text-gray-light"
@@ -78,6 +72,7 @@ function Register({
               >
                 <img
                   className="w-fit h-fit max-w-5 max-h-5 relative before:content-[''] before:absolute before:w-full before:h-[2px] before:bg-gray-heavy before:top-[50%] before:left-0 before:rotate-45"
+                  alt="Toggle Password Visibility"
                   src={
                     showPassword ? "/icons/eye.svg" : "/icons/eye-filled.svg"
                   }
@@ -87,13 +82,14 @@ function Register({
           </div>
           <div className="pt-5">
             <Button
+              type="submit"
               disabled={disabled}
-              onClick={onSubmit}
-              className={`w-full  ${
+              className={classMerge(
+                "w-full",
                 disabled
                   ? "bg-gray-light cursor-not-allowed"
                   : "bg-blue-normal cursor-pointer hover:opacity-85 hover:shadow-2xl"
-              }`}
+              )}
             >
               Continue
             </Button>

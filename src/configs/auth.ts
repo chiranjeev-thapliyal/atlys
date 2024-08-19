@@ -25,3 +25,8 @@ export const registerConfig = {
     validate: (value: string) => value?.trim()?.length > 0
   }
 }
+
+export const AUTH_CONFIG = {
+  login: loginConfig,
+  register: registerConfig
+}

@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Button, Input, Label, Text } from "../../atoms";
-import { Card } from "../../molecules";
+import { Card, CloseButton, PasswordInput } from "../../molecules";
 import { Form } from "../../organisms";
 import { LoginProps } from "./index.types";
-import PasswordInput from "../../molecules/PasswordInput";
-import CloseButton from "../../molecules/CloseButton";
 import { classMerge } from "../../../utils/helper";
 
 function Login({
