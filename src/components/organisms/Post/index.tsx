@@ -11,19 +11,22 @@ function Post({
   isEdited,
   commentCount,
 }: PostProps) {
-  const status = [time];
-  if (isEdited) status.push("Edited");
+  const status = `${time}${isEdited ? " • Edited" : ""}`;
 
   return (
     <Card className="bg-black-light py-6 px-5 gap-3 flex flex-col">
       <div className="flex gap-4 items-center">
-        <img src={imageUrl} className="w-11 h-11 rounded-full object-cover" />
+        <img
+          src={imageUrl}
+          className="w-11 h-11 rounded-full object-cover"
+          alt={`${username}'s profile`}
+        />
         <div className="flex flex-col gap-1">
           <Text as="span" className="text-gray-normal">
             {username}
           </Text>
           <Text as="span" className="text-gray-heavy text-sm">
-            {status.join(" • ")}
+            {status}
           </Text>
         </div>
         <span className="justify-self-end ml-auto">
@@ -32,7 +35,9 @@ function Post({
       </div>
       <Card className="bg-black-heavy p-4 flex gap-4">
         <span className="flex justify-center w-12 h-12 items-center rounded-full bg-black-light p-4">
-          <Text as="span" className="text-lg">{emoji}</Text>
+          <Text as="span" className="text-lg">
+            {emoji}
+          </Text>
         </span>
         <Text as="p" className="text-gray-light">
           {content}

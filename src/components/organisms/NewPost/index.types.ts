@@ -1,8 +1,8 @@
-import { ChangeEvent } from "react";
+import { ChangeEventHandler } from "react";
 
 export interface NewPostProps {
   content: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange: ChangeEventHandler<HTMLInputElement>
   disabled?: boolean;
   onClick?: () => void;
 }
