@@ -22,7 +22,7 @@ function RegisterPage() {
   }, [isAuthenticated]);
 
   return (
-    <div className="h-full w-full flex flex-col gap-12 justify-center items-center bg-black p-4">
+    <div className="h-full w-full flex flex-col gap-12 justify-center items-center bg-black-dark p-4">
       <img src="/logo.svg" className="w-10 h-10" />
       <Register
         username={formData.username.value}

@@ -16,6 +16,7 @@ export default {
           DEFAULT: "#000000",
           light: "#27292D",
           normal: "#35373B",
+          dark: "#131319",
           heavy: "#191920",
         },
         gradient: {

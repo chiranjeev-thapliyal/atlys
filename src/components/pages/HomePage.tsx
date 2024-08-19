@@ -44,7 +44,7 @@ function HomePage() {
   }, [isAuthenticated]);
 
   return (
-    <div className="w-full h-full bg-black flex flex-col items-center p-4 md:p-16 overflow-y-auto">
+    <div className="w-full h-full bg-black-dark flex flex-col items-center p-4 md:p-16 overflow-y-auto">
       <div className="container md:w-1/2 md:max-w-175">
         <div className="flex flex-col gap-3">
           <Text as="h2" className="text-3xl text-gray-normal font-medium">
